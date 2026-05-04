@@ -1,18 +1,13 @@
-const { Sequelize } = require('sequelize');
-
-const sequelize = new Sequelize('node_fulltask', 'root', '1234567@a$', {
-    host: '127.0.0.1',
-    dialect: 'mysql',
-    logging: false
-});
+import mongoose from 'mongoose';
+require('dotenv').config();
 
 let connectDB = async () => {
     try {
-        await sequelize.authenticate();
-        console.log('Connection has been established successfully.');
+        await mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/node_fulltask');
+        console.log('Connect to MongoDB successfully!');
     } catch (error) {
-        console.error('Unable to connect to the database:', error);
+        console.error('Connection error:', error);
     }
 }
 
-module.exports = connectDB;
+export default connectDB;

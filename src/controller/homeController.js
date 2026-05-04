@@ -3,7 +3,7 @@ import CRUDService from '../services/CRUDService';
 
 let getHomePage = async (req, res) => {
     try {
-        let data = await db.User.findAll();
+        let data = await db.User.find();
         return res.render('homepage.ejs', {
             data: JSON.stringify(data)
         });
@@ -59,7 +59,7 @@ let deleteCRUD = async (req, res) => {
     }
 }
 
-module.exports = {
+export default {
     getHomePage: getHomePage,
     getCRUD: getCRUD,
     postCRUD: postCRUD,
